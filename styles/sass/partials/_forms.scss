@@ -1,0 +1,76 @@
+// Flexing our form so that our inputs and labels live on top of one another
+.contactForm {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 90px;
+}
+
+input, textarea {
+	padding: 0 0 10px 5px;
+	border: none;
+	margin-bottom: 40px;
+	color: #333;
+	font-family: $bodyFont;
+
+	&::placeholder{
+		font-size: 0.8rem;
+		color: $primary;
+		opacity: 1;
+		line-height: 1.2rem;
+		text-transform: uppercase;
+	}
+    
+	&:focus {
+		border-bottom: 1px solid $primary;
+	}
+}
+
+input {
+	border-bottom: 1px solid #eee
+}
+
+textarea {
+	min-height: 130px;
+	border: 1px solid #eee;
+	border-top: none;
+}
+
+select {
+  appearance: none;
+  display: block;
+  font-family: $bodyFont;
+  color: $primary;
+  padding: 0 0 10px 0;
+  border: none;
+  border-bottom: 1px solid #eee;
+  border-radius: 0;
+  margin-bottom: 40px;
+  width: 100%;
+  background-color: $solidWhite;
+  background-image: url(../assets/caret-down-solid.svg);
+  background-repeat: no-repeat, repeat;
+  background-position: 95% center;
+  background-size: 20px;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  line-height: 1.2rem;
+}
+
+option {
+	font-family: $bodyFont, sans-serif;
+}
+
+fieldset {
+	border: none;
+	padding: 0;
+	margin: 10px 0;
+
+	label {
+		font-size: 0.8rem;
+	}
+
+	input {
+		margin: 0 10px 0 0;
+		accent-color: $primary;
+	}
+}

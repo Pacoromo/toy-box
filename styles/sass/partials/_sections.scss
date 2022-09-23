@@ -1,0 +1,124 @@
+main {
+	section {
+		margin-bottom: 90px;
+	}
+}
+
+/* Popular products */
+.titleBar {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 70px;
+}
+
+.product {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+.productImgContainer{
+	width: 33.33%;
+	text-align: center;
+	
+	img {
+		border-radius: 5%;
+		margin: 24px;
+		width: calc(100% - 48px);
+	}
+}
+
+/* Categories */
+.categoryGallery {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	text-align: center;
+	width: 100%;
+
+	.items {
+		padding: 45px;
+		margin: 50px 25px 25px;
+		border-radius: 10%;
+		width: 40%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		
+		img {
+			width: 100%;
+			border-radius: 10%;
+			margin: 0 auto 20px auto;
+		}
+		
+		transition: 0.2s ease;
+
+		&:hover{
+			transform: scale(0.95);
+		}
+
+		&:focus{
+			transform: scale(0.95);
+		}
+	}
+
+	.itemOne{
+		background-color: $quinary;
+	}
+
+	.itemTwo{
+		background-color: $secondary;
+	}
+
+	.itemThree{
+		background-color: $tertiary;
+	}
+
+	.itemFour{
+		background-color: $quaternary
+	}
+}
+
+/* 'Let Them Play' */
+.play {
+	background-image: url(../assets/background-image.jpg);
+	background-position: center;
+	background-size: cover;
+	min-height: 90vh;
+	display: flex;
+	align-items: center;
+	margin-bottom: 0;
+
+	.playContainer {
+		max-width: 650px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: 70px 45px;
+		border: 24px solid $secondary;
+		background-color: $solidWhite;
+	}
+}
+
+/* Gallery */
+.gallery {
+	background-color: $tertiary;
+	padding: 90px 0;
+	margin: 0;
+	h2 {
+		max-width: 500px;
+	}
+}
+
+.galleryItems {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	.item{
+		width: 15%;
+		img{
+			width: 100%;
+			display: block;
+		}
+	}
+}
