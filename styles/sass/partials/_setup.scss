@@ -13,12 +13,12 @@ html { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: 
 	z-index: 999;
 	background: white;
 	color: black;
-	font-size: 1rem;
+	font-size: 1rem;	
 	padding: 10px 0;
 }
 
 .skip-link:focus {
 	left: 0;
 	right: 0;
-	text-align: center;
+	// text-align: center;
 }

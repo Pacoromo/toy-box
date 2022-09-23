@@ -240,7 +240,6 @@ html {
 .skip-link:focus {
   left: 0;
   right: 0;
-  text-align: center;
 }
 
 /* site fonts */
@@ -528,6 +527,9 @@ a.button:focus {
   z-index: 20;
   -webkit-transition: 0.75s;
   transition: 0.75s;
+}
+.slideOutNav.showNav {
+  left: 0px;
 }
 .slideOutNav .buttonContainer {
   display: -webkit-box;
@@ -922,11 +924,9 @@ footer .footerNav nav a:focus {
        object-fit: cover;
     display: block;
   }
-
   .categoryGallery .items {
     padding: 25px;
   }
-
   .galleryItems {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
@@ -936,7 +936,6 @@ footer .footerNav nav a:focus {
     width: calc(25% - 20px);
     margin: 10px;
   }
-
   footer .footerFlexContainer {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -963,7 +962,6 @@ footer .footerNav nav a:focus {
     font-size: 1.5rem;
     line-height: 1.7rem;
   }
-
   header {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -981,11 +979,9 @@ footer .footerNav nav a:focus {
     padding: 40px 0;
     width: 100%;
   }
-
   .productImgContainer {
     width: 50%;
   }
-
   .categoryGallery {
     -webkit-box-pack: space-evenly;
         -ms-flex-pack: space-evenly;
@@ -995,11 +991,9 @@ footer .footerNav nav a:focus {
     padding: 15px;
     margin: 20px 10px;
   }
-
   .galleryItems .item {
     width: calc(33.33% - 20px);
   }
-
   footer .newsletter {
     width: 70%;
   }
@@ -1009,11 +1003,9 @@ footer .footerNav nav a:focus {
   h3 {
     font-size: 2.2rem;
   }
-
   button {
     padding: 10px 20px;
   }
-
   .navBar .wrapper {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -1034,7 +1026,6 @@ footer .footerNav nav a:focus {
   .navBar .logo {
     margin: 10px 0 20px 0;
   }
-
   .slideOutNav {
     width: 100%;
   }
@@ -1042,26 +1033,21 @@ footer .footerNav nav a:focus {
     font-weight: bold;
     font-size: 1.2rem;
   }
-
   .titleBar button {
     -ms-flex-item-align: center;
         align-self: center;
   }
-
   .productImgContainer {
     width: 100%;
   }
-
   .categoryGallery .items {
     width: 100%;
     padding: 30px;
     margin: 40px 0 0 0;
   }
-
   .galleryItems .item {
     width: 100%;
   }
-
   footer .footerFlexContainer {
     margin-bottom: 60px;
   }
