@@ -6,7 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Contact page</title>
-	<script src="https://kit.fontawesome.com/0c267c29f4.js" crossorigin="anonymous"></script>
+	<script src="https://kit.fontawesome.com/37e87276d8.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="./styles/styles.css">
 </head>
 
@@ -75,37 +75,44 @@
 				<div class="inputGroup">
 					<label for="firstName" class="sr-only">Name</label>
 					<input type="text" id="firstName" placeholder="First Name">
+					<span id="firstNameError"></span>
 				</div>
 				<div class="inputGroup">
 					<label for="lastName" class="sr-only">Surname</label>
 					<input type="text" id="lastName" placeholder="Last Name">
+					<span id="lastNameError"></span>
 				</div>
 
 				<div class="inputGroup">
 					<label for="email" class="sr-only">Email</label>
 					<input type="email" id="email" placeholder="Email">
+					<span id="emailError"></span>
 				</div>
 
 				<div class="inputGroup">
 					<label for="phone" class="sr-only">Phone</label>
 					<input type="tel" id="phone" placeholder="Phone">
+					<span id="phoneError"></span>
 				</div>
 
 
 				<select name="reason" id="reason">
-					<option value="initial" disabled selected>Reason for contacting</option>
+					<option id="reasonPlaceholder" value="initial" disabled selected>Reason for contacting</option>
 					<option value="refund">Refund request</option>
 					<option value="status">Order status update</option>
 					<option value="praise">Praise!</option>
 					<option value="complaint">General concerns</option>
 				</select>
 
-				<label for="message" class="sr-only">Message for me</label>
+				<label id="messagePlaceholder" for="message" class="sr-only">Message for me</label>
 				<textarea name="message" id="message" cols="30" rows="10" placeholder="Message for me"></textarea>
 
 				<fieldset>
-					<input type="checkbox" id="terms" />
-					<label for="terms">I agree to the Terms & Conditions.</label>
+					<div class="inputGroup">
+						<input type="checkbox" id="terms" />
+						<label for="terms">I agree to the Terms & Conditions.</label>
+						<span id="termsError"></span>
+					</div>
 				</fieldset>
 
 				<button>Send Message</button>

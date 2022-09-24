@@ -778,8 +778,17 @@ main section {
   margin-bottom: 90px;
 }
 
-.input-group {
+.inputGroup {
   position: relative;
+}
+.inputGroup span {
+  position: absolute;
+  color: red;
+  background-color: #fff;
+  right: 0.5em;
+}
+.inputGroup i {
+  color: seagreen;
 }
 
 input,
@@ -831,13 +840,22 @@ textarea:focus {
   border-bottom: 1px solid #084b6d;
 }
 
+input:not([type=checkbox]),
+textarea {
+  width: 100%;
+}
 input:not([type=checkbox]):focus-visible,
 textarea:focus-visible {
   outline: none;
 }
 
+input[type=text],
+input[type=email],
+input[type=phone] {
+  padding-right: 2em;
+}
+
 input {
-  width: 100%;
   border-bottom: 1px solid #eee;
 }
 

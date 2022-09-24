@@ -5,8 +5,19 @@
 	margin-bottom: 90px;
 }
 
-.input-group{
+.inputGroup {
 	position: relative;
+
+	span {
+		position: absolute;
+		color: red;
+		background-color: $solidWhite;
+		right: .5em;
+	}
+
+	i {
+		color: seagreen;
+	}
 }
 
 input,
@@ -32,13 +43,21 @@ textarea {
 
 input:not([type="checkbox"]),
 textarea {
+	width: 100%;
+
 	&:focus-visible {
 		outline: none;
 	}
 }
 
+input[type="text"],
+input[type="email"],
+input[type="phone"] {
+	padding-right: 2em;
+}
+
+
 input {
-	width: 100%;
 	border-bottom: 1px solid #eee
 }
 
