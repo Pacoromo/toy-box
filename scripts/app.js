@@ -82,7 +82,7 @@ form.addEventListener("focusin", () => {
   errorMessages.forEach((message) => {
     message.style.display = "initial";
   });
-  const selectMessage = document.getElementById("selectPlaceholder")
+  const selectMessage = document.getElementById("selectPlaceholder");
   selectMessage.textContent = "test";
 });
 
