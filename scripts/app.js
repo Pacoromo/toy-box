@@ -5,7 +5,9 @@ const menuButton = document.querySelector(".menuIcon");
 const slideMenu = document.querySelector(".slideOutNav");
 const closeNav = document.querySelector(".hideSideNav");
 
-// Event Listeners
+//** Event Listeners **//
+
+
 //Slide Menu
 menuButton.addEventListener("click", function () {
   slideMenu.classList.add("showNav");
@@ -14,4 +16,7 @@ menuButton.addEventListener("click", function () {
 closeNav.addEventListener("click", function () {
   slideMenu.classList.remove("showNav");
 });
+
+//Form 
+
 

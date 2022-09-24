@@ -5,24 +5,26 @@
 	margin-bottom: 90px;
 }
 
-input, textarea {
+input,
+textarea {
 	padding: 0 0 10px 5px;
 	border: none;
 	margin-bottom: 40px;
 	color: #333;
 	font-family: $bodyFont;
 
-	&::placeholder{
+	&::placeholder {
 		font-size: 0.8rem;
 		color: $primary;
 		opacity: 1;
 		line-height: 1.2rem;
 		text-transform: uppercase;
 	}
-    
+
 	&:focus {
 		border-bottom: 1px solid $primary;
 	}
+
 	&:focus-visible {
 		outline: none;
 	}
@@ -39,24 +41,24 @@ textarea {
 }
 
 select {
-  appearance: none;
-  display: block;
-  font-family: $bodyFont;
-  color: $primary;
-  padding: 0 0 10px 0;
-  border: none;
-  border-bottom: 1px solid #eee;
-  border-radius: 0;
-  margin-bottom: 40px;
-  width: 100%;
-  background-color: $solidWhite;
-  background-image: url(../assets/caret-down-solid.svg);
-  background-repeat: no-repeat, repeat;
-  background-position: 95% center;
-  background-size: 20px;
-  text-transform: uppercase;
-  font-size: 0.8rem;
-  line-height: 1.2rem;
+	appearance: none;
+	display: block;
+	font-family: $bodyFont;
+	color: $primary;
+	padding: 0 0 10px 0;
+	border: none;
+	border-bottom: 1px solid #eee;
+	border-radius: 0;
+	margin-bottom: 40px;
+	width: 100%;
+	background-color: $solidWhite;
+	background-image: url(../assets/caret-down-solid.svg);
+	background-repeat: no-repeat, repeat;
+	background-position: 95% center;
+	background-size: 20px;
+	text-transform: uppercase;
+	font-size: 0.8rem;
+	line-height: 1.2rem;
 }
 
 option {

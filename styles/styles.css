@@ -778,7 +778,8 @@ main section {
   margin-bottom: 90px;
 }
 
-input, textarea {
+input,
+textarea {
   padding: 0 0 10px 5px;
   border: none;
   margin-bottom: 40px;
@@ -813,17 +814,20 @@ input::-ms-input-placeholder, textarea::-ms-input-placeholder {
   line-height: 1.2rem;
   text-transform: uppercase;
 }
-input::placeholder, textarea::placeholder {
+input::placeholder,
+textarea::placeholder {
   font-size: 0.8rem;
   color: #084b6d;
   opacity: 1;
   line-height: 1.2rem;
   text-transform: uppercase;
 }
-input:focus, textarea:focus {
+input:focus,
+textarea:focus {
   border-bottom: 1px solid #084b6d;
 }
-input:focus-visible, textarea:focus-visible {
+input:focus-visible,
+textarea:focus-visible {
   outline: none;
 }
 
