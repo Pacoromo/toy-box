@@ -24,7 +24,10 @@ textarea {
 	&:focus {
 		border-bottom: 1px solid $primary;
 	}
+}
 
+input:not([type="checkbox"]),
+textarea {
 	&:focus-visible {
 		outline: none;
 	}
@@ -41,7 +44,7 @@ textarea {
 }
 
 select {
-	appearance: none;
+	// appearance: none;
 	display: block;
 	font-family: $bodyFont;
 	color: $primary;
