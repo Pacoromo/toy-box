@@ -19,10 +19,9 @@ const phoneInput = document.getElementById("phone");
 const phoneError = document.getElementById("phoneError");
 
 const contactReason = document.getElementById("reason");
-const reasonPlaceholder = document.getElementById("reasonPlaceholder");
+const reasonPlaceholder = document.getElementById("selectPlaceholder");
 
 const message = document.getElementById("message");
-const messagePlaceholder = document.getElementById("messagePlaceholder");
 
 const agreedTerms = document.getElementById("terms");
 const termsError = document.getElementById("termsError");
@@ -46,7 +45,6 @@ const validateName = (input) => {
     inputError.textContent = "Not Valid";
     return false;
   }
-  console.log(name);
   inputError.innerHTML = `<i class="fa-solid fa-circle-check"></i>`;
   return true;
 };
@@ -66,6 +64,26 @@ closeNavBtn.addEventListener("click", () => {
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
+});
+
+//If form loses focus do not show any warnings (Bubbling)
+
+form.addEventListener("focusout", () => {
+  const errorMessages = document.querySelectorAll("[id$=Error]");
+  console.log(errorMessages);
+  errorMessages.forEach((message) => {
+    message.style.display = "none";
+  });
+});
+
+//Show warnings back when an element form is focused
+form.addEventListener("focusin", () => {
+  const errorMessages = document.querySelectorAll("[id$=Error]");
+  errorMessages.forEach((message) => {
+    message.style.display = "initial";
+  });
+  const selectMessage = document.getElementById("selectPlaceholder")
+  selectMessage.textContent = "test";
 });
 
 firstNameInput.addEventListener("keyup", () => {
