@@ -5,6 +5,10 @@
 	margin-bottom: 90px;
 }
 
+.input-group{
+	position: relative;
+}
+
 input,
 textarea {
 	padding: 0 0 10px 5px;
@@ -34,6 +38,7 @@ textarea {
 }
 
 input {
+	width: 100%;
 	border-bottom: 1px solid #eee
 }
 
@@ -41,6 +46,7 @@ textarea {
 	min-height: 130px;
 	border: 1px solid #eee;
 	border-top: none;
+	resize: none;
 }
 
 select {

@@ -71,17 +71,26 @@
 		<div class="wrapper">
 
 			<form action="https://formspree.io/f/xlevbbwe" method="POST" class="contactForm" name="contactForm">
-				<label for="name" class="sr-only">Name</label>
-				<input type="text" id="name" placeholder="Name">
 
-				<label for="surname" class="sr-only">Surname</label>
-				<input type="text" id="surname" placeholder="Surname">
+				<div class="inputGroup">
+					<label for="firstName" class="sr-only">Name</label>
+					<input type="text" id="firstName" placeholder="First Name">
+				</div>
+				<div class="inputGroup">
+					<label for="lastName" class="sr-only">Surname</label>
+					<input type="text" id="lastName" placeholder="Last Name">
+				</div>
 
-				<label for="email" class="sr-only">Email</label>
-				<input type="email" id="email" placeholder="Email">
+				<div class="inputGroup">
+					<label for="email" class="sr-only">Email</label>
+					<input type="email" id="email" placeholder="Email">
+				</div>
 
-				<label for="phone" class="sr-only">Phone</label>
-				<input type="tel" id="phone" placeholder="Phone">
+				<div class="inputGroup">
+					<label for="phone" class="sr-only">Phone</label>
+					<input type="tel" id="phone" placeholder="Phone">
+				</div>
+
 
 				<select name="reason" id="reason">
 					<option value="initial" disabled selected>Reason for contacting</option>
@@ -170,5 +179,4 @@
 		</div> <!-- .wrapper END-->
 	</footer>
 	<script src="./scripts/app.js"></script>
-er>
-
+	er>
