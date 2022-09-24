@@ -23,6 +23,9 @@ input, textarea {
 	&:focus {
 		border-bottom: 1px solid $primary;
 	}
+	&:focus-visible {
+		outline: none;
+	}
 }
 
 input {

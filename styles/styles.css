@@ -240,6 +240,7 @@ html {
 .skip-link:focus {
   left: 0;
   right: 0;
+  text-align: center;
 }
 
 /* site fonts */
@@ -821,6 +822,9 @@ input::placeholder, textarea::placeholder {
 }
 input:focus, textarea:focus {
   border-bottom: 1px solid #084b6d;
+}
+input:focus-visible, textarea:focus-visible {
+  outline: none;
 }
 
 input {
