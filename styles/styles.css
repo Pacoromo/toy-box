@@ -781,15 +781,24 @@ main section {
 .inputGroup {
   position: relative;
 }
+.inputGroup div,
 .inputGroup span {
   position: absolute;
-  font-size: 0.7rem;
+}
+.inputGroup div {
+  font-size: 0.5rem;
   color: red;
+  top: -2em;
+}
+.inputGroup span {
   background-color: #fff;
   right: 0.5em;
 }
 .inputGroup i {
   color: seagreen;
+}
+.inputGroup i.warning {
+  color: red;
 }
 
 input,
@@ -868,6 +877,9 @@ textarea {
 }
 
 select {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   display: block;
   font-family: "Jakarta Sans";
   color: #084b6d;

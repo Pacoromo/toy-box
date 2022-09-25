@@ -7,17 +7,27 @@
 
 .inputGroup {
 	position: relative;
-
+	div,
 	span {
 		position: absolute;
-		font-size: .7rem;
+	}
+	
+	div {
+		font-size: .5rem;
 		color: red;
+		top: -2em;
+	}
+	span {
 		background-color: $solidWhite;
 		right: .5em;
 	}
 
 	i {
 		color: seagreen;
+
+		&.warning {
+			color: red;
+		}
 	}
 }
 
@@ -70,7 +80,7 @@ textarea {
 }
 
 select {
-	// appearance: none;
+	appearance: none;
 	display: block;
 	font-family: $bodyFont;
 	color: $primary;

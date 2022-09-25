@@ -7,15 +7,22 @@ const closeNavBtn = document.querySelector(".hideSideNav");
 
 //form elements
 const form = document.querySelector("form");
+const firstNameInput = document.querySelector("#firstName");
+const firstNameIcon = document.querySelector(".firstNameGroup .icon");
+const firstNameErrorMessage = document.querySelector(".firstNameGroup .errorMessage");
 
-const firstNameInput = document.getElementById("firstName");
+const lastNameInput = document.querySelector("#lastName");
+const lastNameError = document.querySelector(".lastNameGroup .icon");
+const lastNameErrorMessage = document.querySelector(".lastNameGroup .errorMessage");
 
-const lastNameInput = document.getElementById("lastName");
 
-const emailInput = document.getElementById("email");
+const emailInput = document.querySelector("#email");
+const emailError = document.querySelector(".emailGroup .icon");
+const emailErrorMessage = document.querySelector(".emailGroup .errorMessage");
 
-const phoneInput = document.getElementById("phone");
-const phoneError = document.getElementById("phoneError");
+
+const phoneInput = document.querySelector("#phone");
+const phoneError = document.querySelector(".phoneGroup .icon");
 
 const contactReason = document.getElementById("reason");
 const reasonPlaceholder = document.getElementById("selectPlaceholder");
@@ -32,28 +39,38 @@ const termsError = document.getElementById("termsError");
 //Name validation
 
 const validateName = (input) => {
-  //trim whitespace
+  //trim whitespace to avoid blank names
   const name = input.value.trim();
-  let errorMessage;
-  const namesRegex = /^[a-zA-Z ]+$/; //https://stackoverflow.com/questions/3073850/javascript-regex-test-peoples-name
+  let icon,
+  message;
+  const namesRegex = /^[a-z ,.'-]+$/i; //https://stackoverflow.com/questions/3073850/javascript-regex-test-peoples-name
 
   //Check if first/last name
   if (input === firstNameInput) {
-    errorMessage = document.getElementById("firstNameError");
-  } else {
-    errorMessage = document.getElementById("lastNameError");
+    icon = firstNameIcon;
+    message = firstNameErrorMessage;
+  } else if (input === lastNameInput) {
+    icon = lastNameError;
+    message = lastNameErrorMessage;
+  } else if (input === emailInput) {
+    icon = emailIcon;
+    message = emailErrorMessage;
   }
 
   //Check input value
 
   if (name.length === 0) {
-    errorMessage.textContent = "Not Valid";
+    message.textContent = "Please enter a valid name";
+    icon.innerHTML = `<i class="fa-solid fa-circle-xmark warning"></i>`;
     return false;
   } else if (!namesRegex.test(name)) {
-    errorMessage.textContent = "Not Valid";
+    message.textContent = "Please enter a valid name";
+    icon.innerHTML = `<i class="fa-solid fa-circle-xmark warning"></i>`;
     return false;
   }
-  errorMessage.innerHTML = `<i class="fa-solid fa-circle-check"></i>`;
+  
+  message.textContent = "";
+  icon.innerHTML = `<i class="fa-solid fa-circle-check"></i>`;
   return true;
 };
 
@@ -62,20 +79,39 @@ const validateName = (input) => {
 const validateEmail = (input) => {
   //trim whitespace
   const email = input.value.trim();
-  const errorMessage = document.getElementById("emailError");
-  const emailRegex =
-    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; //https://stackoverflow.com/questions/46155/how-can-i-validate-an-email-address-in-javascript
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; //https://stackoverflow.com/questions/46155/how-can-i-validate-an-email-address-in-javascript
 
   //Check input value
 
   if (email.length === 0) {
-    errorMessage.textContent = "Not Valid";
+    emailError.textContent = "Not Valid";
     return false;
   } else if (!emailRegex.test(email)) {
-    errorMessage.textContent = "Not Valid";
+    emailError.textContent = "Not Valid";
     return false;
   }
-  errorMessage.innerHTML = `<i class="fa-solid fa-circle-check"></i>`;
+  emailError.innerHTML = `<i class="fa-solid fa-circle-check"></i>`;
+  return true;
+};
+
+//Phone validation
+
+const validatePhone = (input) => {
+  //trim whitespace
+  const phone = input.value.trim();
+  const emailRegex =
+    /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im; //https://stackoverflow.com/questions/4338267/validate-phone-number-with-javascript
+
+  //Check input value
+
+  if (phone.length === 0) {
+    phoneError.textContent = "Not Valid";
+    return false;
+  } else if (!emailRegex.test(phone)) {
+    phoneError.textContent = "Not Valid";
+    return false;
+  }
+  phoneError.innerHTML = `<i class="fa-solid fa-circle-check"></i>`;
   return true;
 };
 
@@ -100,7 +136,7 @@ form.addEventListener("submit", (e) => {
 
 //If form loses focus do not show any warnings
 form.addEventListener("focusout", () => {
-  const errorMessages = document.querySelectorAll("[id$=Error]");
+  const errorMessages = document.querySelectorAll(".inputGroup .icon");
   errorMessages.forEach((message) => {
     message.hidden = true;
   });
@@ -108,7 +144,7 @@ form.addEventListener("focusout", () => {
 
 //Show warnings back when an element form is focused
 form.addEventListener("focusin", () => {
-  const errorMessages = document.querySelectorAll("[id$=Error]");
+  const errorMessages = document.querySelectorAll(".inputGroup .icon");
   errorMessages.forEach((message) => {
     message.hidden = false;
   });
@@ -116,12 +152,32 @@ form.addEventListener("focusin", () => {
 
 firstNameInput.addEventListener("keyup", () => {
   validateName(firstNameInput);
+  //Do not show warnings if input is completely empty
+  if (firstNameInput.value.length === 0) {
+    firstNameIcon.textContent = "";
+    firstNameErrorMessage.textContent = "";
+  }
 });
 
 lastNameInput.addEventListener("keyup", () => {
   validateName(lastNameInput);
+  if (lastNameInput.value.length === 0) {
+    lastNameError.textContent = "";
+  }
 });
 
 emailInput.addEventListener("keyup", () => {
   validateEmail(emailInput);
+});
+
+phoneInput.addEventListener("keyup", () => {
+  validatePhone(phoneInput);
+});
+
+phoneInput.addEventListener("focusin", () => {
+  phoneInput.placeholder = "Enter your 10 digit phone number";
+});
+
+phoneInput.addEventListener("focusout", () => {
+  phoneInput.placeholder = "Phone";
 });
