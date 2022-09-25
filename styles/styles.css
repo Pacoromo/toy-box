@@ -783,6 +783,7 @@ main section {
 }
 .inputGroup span {
   position: absolute;
+  font-size: 0.7rem;
   color: red;
   background-color: #fff;
   right: 0.5em;

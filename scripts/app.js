@@ -13,7 +13,6 @@ const firstNameInput = document.getElementById("firstName");
 const lastNameInput = document.getElementById("lastName");
 
 const emailInput = document.getElementById("email");
-const emailError = document.getElementById("emailError");
 
 const phoneInput = document.getElementById("phone");
 const phoneError = document.getElementById("phoneError");
@@ -26,30 +25,63 @@ const message = document.getElementById("message");
 const agreedTerms = document.getElementById("terms");
 const termsError = document.getElementById("termsError");
 
-//Functions
+//**********************************************************/
+//********************** Functions ************************//
+//**********************************************************/
+
+//Name validation
 
 const validateName = (input) => {
   //trim whitespace
   const name = input.value.trim();
-  let inputError;
-  //Check if first or last name
+  let errorMessage;
+  const namesRegex = /^[a-zA-Z ]+$/; //https://stackoverflow.com/questions/3073850/javascript-regex-test-peoples-name
+
+  //Check if first/last name
   if (input === firstNameInput) {
-    inputError = document.getElementById("firstNameError");
+    errorMessage = document.getElementById("firstNameError");
   } else {
-    inputError = document.getElementById("lastNameError");
+    errorMessage = document.getElementById("lastNameError");
   }
 
   //Check input value
 
   if (name.length === 0) {
-    inputError.textContent = "Not Valid";
+    errorMessage.textContent = "Not Valid";
+    return false;
+  } else if (!namesRegex.test(name)) {
+    errorMessage.textContent = "Not Valid";
     return false;
   }
-  inputError.innerHTML = `<i class="fa-solid fa-circle-check"></i>`;
+  errorMessage.innerHTML = `<i class="fa-solid fa-circle-check"></i>`;
   return true;
 };
 
-//** Event Listeners **//
+//Email validation
+
+const validateEmail = (input) => {
+  //trim whitespace
+  const email = input.value.trim();
+  const errorMessage = document.getElementById("emailError");
+  const emailRegex =
+    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; //https://stackoverflow.com/questions/46155/how-can-i-validate-an-email-address-in-javascript
+
+  //Check input value
+
+  if (email.length === 0) {
+    errorMessage.textContent = "Not Valid";
+    return false;
+  } else if (!emailRegex.test(email)) {
+    errorMessage.textContent = "Not Valid";
+    return false;
+  }
+  errorMessage.innerHTML = `<i class="fa-solid fa-circle-check"></i>`;
+  return true;
+};
+
+//**********************************************************/
+//***************** Event Listeners ***********************//
+//**********************************************************/
 
 //Slide Menu
 menuBtn.addEventListener("click", () => {
@@ -66,13 +98,11 @@ form.addEventListener("submit", (e) => {
   e.preventDefault();
 });
 
-//If form loses focus do not show any warnings (Bubbling)
-
+//If form loses focus do not show any warnings
 form.addEventListener("focusout", () => {
   const errorMessages = document.querySelectorAll("[id$=Error]");
-  console.log(errorMessages);
   errorMessages.forEach((message) => {
-    message.style.display = "none";
+    message.hidden = true;
   });
 });
 
@@ -80,15 +110,18 @@ form.addEventListener("focusout", () => {
 form.addEventListener("focusin", () => {
   const errorMessages = document.querySelectorAll("[id$=Error]");
   errorMessages.forEach((message) => {
-    message.style.display = "initial";
+    message.hidden = false;
   });
-  const selectMessage = document.getElementById("selectPlaceholder");
-  selectMessage.textContent = "test";
 });
 
 firstNameInput.addEventListener("keyup", () => {
   validateName(firstNameInput);
 });
+
 lastNameInput.addEventListener("keyup", () => {
   validateName(lastNameInput);
+});
+
+emailInput.addEventListener("keyup", () => {
+  validateEmail(emailInput);
 });
