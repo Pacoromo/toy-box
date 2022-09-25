@@ -12,17 +12,17 @@ const firstNameIcon = document.querySelector(".firstNameGroup .icon");
 const firstNameErrorMessage = document.querySelector(".firstNameGroup .errorMessage");
 
 const lastNameInput = document.querySelector("#lastName");
-const lastNameError = document.querySelector(".lastNameGroup .icon");
+const lastNameIcon = document.querySelector(".lastNameGroup .icon");
 const lastNameErrorMessage = document.querySelector(".lastNameGroup .errorMessage");
 
-
 const emailInput = document.querySelector("#email");
-const emailError = document.querySelector(".emailGroup .icon");
+const emailIcon = document.querySelector(".emailGroup .icon");
 const emailErrorMessage = document.querySelector(".emailGroup .errorMessage");
 
-
 const phoneInput = document.querySelector("#phone");
-const phoneError = document.querySelector(".phoneGroup .icon");
+const phoneIcon = document.querySelector(".phoneGroup .icon");
+const phoneErrorMessage = document.querySelector(".phoneGroup .errorMessage");
+
 
 const contactReason = document.getElementById("reason");
 const reasonPlaceholder = document.getElementById("selectPlaceholder");
@@ -38,81 +38,59 @@ const termsError = document.getElementById("termsError");
 
 //Name validation
 
-const validateName = (input) => {
-  //trim whitespace to avoid blank names
-  const name = input.value.trim();
-  let icon,
-  message;
+const checkInput = (input) => {
+  //trim whitespace to avoid blank inputs
+  const inputValue = input.value.trim();
+  let iconContainer, messageContainer, regex, message;
   const namesRegex = /^[a-z ,.'-]+$/i; //https://stackoverflow.com/questions/3073850/javascript-regex-test-peoples-name
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; //https://stackoverflow.com/questions/46155/how-can-i-validate-an-email-address-in-javascript
+  const phoneRegex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im; //https://stackoverflow.com/questions/4338267/validate-phone-number-with-javascript
 
   //Check if first/last name
   if (input === firstNameInput) {
-    icon = firstNameIcon;
-    message = firstNameErrorMessage;
+    iconContainer = firstNameIcon;
+    messageContainer = firstNameErrorMessage;
+    regex = namesRegex;
+    message = "Please enter a valid first name";
   } else if (input === lastNameInput) {
-    icon = lastNameError;
-    message = lastNameErrorMessage;
+    iconContainer = lastNameIcon;
+    messageContainer = lastNameErrorMessage;
+    regex = namesRegex;
+    message = "Please enter a valid last name";
   } else if (input === emailInput) {
-    icon = emailIcon;
-    message = emailErrorMessage;
+    iconContainer = emailIcon;
+    messageContainer = emailErrorMessage;
+    regex = emailRegex;
+    message = "Please enter a valid email";
+  } else if (input === phoneInput) {
+    iconContainer = phoneIcon;
+    messageContainer = phoneErrorMessage;
+    regex = phoneRegex;
+    message = "Please enter a valid phone number";
   }
 
   //Check input value
 
-  if (name.length === 0) {
-    message.textContent = "Please enter a valid name";
-    icon.innerHTML = `<i class="fa-solid fa-circle-xmark warning"></i>`;
+  if (inputValue.length === 0) {
+    messageContainer.textContent = message;
+    iconContainer.innerHTML = `<i class="fa-solid fa-circle-xmark warning"></i>`;
     return false;
-  } else if (!namesRegex.test(name)) {
-    message.textContent = "Please enter a valid name";
-    icon.innerHTML = `<i class="fa-solid fa-circle-xmark warning"></i>`;
+  } else if (!regex.test(inputValue)) {
+    messageContainer.textContent = message;
+    iconContainer.innerHTML = `<i class="fa-solid fa-circle-xmark warning"></i>`;
     return false;
   }
-  
-  message.textContent = "";
-  icon.innerHTML = `<i class="fa-solid fa-circle-check"></i>`;
+
+  messageContainer.textContent = "";
+  iconContainer.innerHTML = `<i class="fa-solid fa-circle-check"></i>`;
   return true;
 };
 
-//Email validation
-
-const validateEmail = (input) => {
-  //trim whitespace
-  const email = input.value.trim();
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; //https://stackoverflow.com/questions/46155/how-can-i-validate-an-email-address-in-javascript
-
-  //Check input value
-
-  if (email.length === 0) {
-    emailError.textContent = "Not Valid";
-    return false;
-  } else if (!emailRegex.test(email)) {
-    emailError.textContent = "Not Valid";
-    return false;
+const clearInput = (input, inputIcon, inputMessage) => {
+  if (input.value.length === 0) {
+    inputIcon.textContent = "";
+    inputMessage.textContent = "";
   }
-  emailError.innerHTML = `<i class="fa-solid fa-circle-check"></i>`;
-  return true;
-};
-
-//Phone validation
-
-const validatePhone = (input) => {
-  //trim whitespace
-  const phone = input.value.trim();
-  const emailRegex =
-    /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im; //https://stackoverflow.com/questions/4338267/validate-phone-number-with-javascript
-
-  //Check input value
-
-  if (phone.length === 0) {
-    phoneError.textContent = "Not Valid";
-    return false;
-  } else if (!emailRegex.test(phone)) {
-    phoneError.textContent = "Not Valid";
-    return false;
-  }
-  phoneError.innerHTML = `<i class="fa-solid fa-circle-check"></i>`;
-  return true;
 };
 
 //**********************************************************/
@@ -136,48 +114,44 @@ form.addEventListener("submit", (e) => {
 
 //If form loses focus do not show any warnings
 form.addEventListener("focusout", () => {
-  const errorMessages = document.querySelectorAll(".inputGroup .icon");
+  const errorIcons = document.querySelectorAll(".inputGroup .icon");
+  const errorMessages = document.querySelectorAll(".inputGroup .errorMessage");
+  errorIcons.forEach((icon) => {
+    icon.hidden = true;
+  });
   errorMessages.forEach((message) => {
     message.hidden = true;
   });
 });
 
-//Show warnings back when an element form is focused
+//Show warnings back when a form element is focused
 form.addEventListener("focusin", () => {
-  const errorMessages = document.querySelectorAll(".inputGroup .icon");
+  const errorIcons = document.querySelectorAll(".inputGroup .icon");
+  const errorMessages = document.querySelectorAll(".inputGroup .errorMessage");
+  errorIcons.forEach((icon) => {
+    icon.hidden = false;
+  });
   errorMessages.forEach((message) => {
     message.hidden = false;
   });
 });
 
 firstNameInput.addEventListener("keyup", () => {
-  validateName(firstNameInput);
-  //Do not show warnings if input is completely empty
-  if (firstNameInput.value.length === 0) {
-    firstNameIcon.textContent = "";
-    firstNameErrorMessage.textContent = "";
-  }
+  checkInput(firstNameInput);
+  clearInput(firstNameInput, firstNameIcon, firstNameErrorMessage);//Do not show warnings if input is completely empty
 });
 
 lastNameInput.addEventListener("keyup", () => {
-  validateName(lastNameInput);
-  if (lastNameInput.value.length === 0) {
-    lastNameError.textContent = "";
-  }
+  checkInput(lastNameInput);
+  clearInput(lastNameInput, lastNameIcon, lastNameErrorMessage);
 });
 
 emailInput.addEventListener("keyup", () => {
-  validateEmail(emailInput);
+  checkInput(emailInput);
+  clearInput(emailInput, emailIcon, emailErrorMessage);
 });
 
 phoneInput.addEventListener("keyup", () => {
-  validatePhone(phoneInput);
-});
-
-phoneInput.addEventListener("focusin", () => {
-  phoneInput.placeholder = "Enter your 10 digit phone number";
-});
-
-phoneInput.addEventListener("focusout", () => {
-  phoneInput.placeholder = "Phone";
+  checkInput(phoneInput);
+  clearInput(phoneInput, phoneIcon, phoneErrorMessage);
 });

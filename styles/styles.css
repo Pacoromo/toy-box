@@ -786,7 +786,7 @@ main section {
   position: absolute;
 }
 .inputGroup div {
-  font-size: 0.5rem;
+  font-size: 0.7rem;
   color: red;
   top: -2em;
 }
@@ -861,7 +861,7 @@ textarea:focus-visible {
 
 input[type=text],
 input[type=email],
-input[type=phone] {
+input[type=tel] {
   padding-right: 2em;
 }
 
