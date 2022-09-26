@@ -99,7 +99,7 @@ const checkInput = (input) => {
     return true;
   }
 
-  //Check input value
+  //Then, check input value
 
   if (inputValue.length === 0) {
     messageContainer.textContent = message;
@@ -152,6 +152,18 @@ form.addEventListener("submit", (e) => {
     checkInput(termsCheckbox)
   ) {
     e.target.submit();
+  } else {
+    //modal screen to implement
+    const modalScreen = document.querySelector(".modalScreen");
+    const modalBtn = document.querySelector(".modalScreen");
+    modalScreen.removeAttribute("hidden");
+    modalBtn.addEventListener(
+      "click",
+      () => {
+        modalScreen.setAttribute("hidden", "");
+      },
+      { once: true }
+    );
   }
 });
 
