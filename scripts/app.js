@@ -162,7 +162,7 @@ form.addEventListener("submit", (e) => {
       () => {
         modalScreen.setAttribute("hidden", "");
       },
-      { once: true }
+      {once: true }
     );
   }
 });
