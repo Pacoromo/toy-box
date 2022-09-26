@@ -155,14 +155,14 @@ form.addEventListener("submit", (e) => {
   } else {
     //modal screen to implement
     const modalScreen = document.querySelector(".modalScreen");
-    const modalBtn = document.querySelector(".modalScreen");
+    const modalBtn = document.querySelector(".modalScreen button");
     modalScreen.removeAttribute("hidden");
     modalBtn.addEventListener(
       "click",
       () => {
         modalScreen.setAttribute("hidden", "");
       },
-      {once: true }
+      { once: true }
     );
   }
 });
