@@ -142,7 +142,6 @@ closeNavBtn.addEventListener("click", () => {
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-
   if (
     checkInput(firstNameInput) &&
     checkInput(lastNameInput) &&
@@ -154,7 +153,6 @@ form.addEventListener("submit", (e) => {
   ) {
     e.target.submit();
   }
-  console.log("Form didn't submit");
 });
 
 //If form loses focus do not show any warnings
