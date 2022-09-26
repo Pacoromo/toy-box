@@ -142,15 +142,19 @@ closeNavBtn.addEventListener("click", () => {
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  checkInput(firstNameInput);
-  checkInput(lastNameInput);
-  checkInput(emailInput);
-  checkInput(phoneInput);
-  checkInput(reasonSelectMenu);
-  checkInput(messageInput);
-  checkInput(termsCheckbox);
-  console.log("Ready to submit");
-  console.log(e.target.submit());
+
+  if (
+    checkInput(firstNameInput) &&
+    checkInput(lastNameInput) &&
+    checkInput(emailInput) &&
+    checkInput(phoneInput) &&
+    checkInput(reasonSelectMenu) &&
+    checkInput(messageInput) &&
+    checkInput(termsCheckbox)
+  ) {
+    e.target.submit();
+  }
+  console.log("Form didn't submit");
 });
 
 //If form loses focus do not show any warnings
