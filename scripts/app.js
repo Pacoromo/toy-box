@@ -7,13 +7,18 @@ const closeNavBtn = document.querySelector(".hideSideNav");
 
 //form elements
 const form = document.querySelector("form");
+
 const firstNameInput = document.querySelector("#firstName");
 const firstNameIcon = document.querySelector(".firstNameGroup .icon");
-const firstNameErrorMessage = document.querySelector(".firstNameGroup .errorMessage");
+const firstNameErrorMessage = document.querySelector(
+  ".firstNameGroup .errorMessage"
+);
 
 const lastNameInput = document.querySelector("#lastName");
 const lastNameIcon = document.querySelector(".lastNameGroup .icon");
-const lastNameErrorMessage = document.querySelector(".lastNameGroup .errorMessage");
+const lastNameErrorMessage = document.querySelector(
+  ".lastNameGroup .errorMessage"
+);
 
 const emailInput = document.querySelector("#email");
 const emailIcon = document.querySelector(".emailGroup .icon");
@@ -23,20 +28,24 @@ const phoneInput = document.querySelector("#phone");
 const phoneIcon = document.querySelector(".phoneGroup .icon");
 const phoneErrorMessage = document.querySelector(".phoneGroup .errorMessage");
 
+const reasonSelectMenu = document.getElementById("reason");
+const reasonSelectMenuErrorMessage = document.querySelector(
+  ".selectGroup .errorMessage"
+);
 
-const contactReason = document.getElementById("reason");
-const reasonPlaceholder = document.getElementById("selectPlaceholder");
+const messageInput = document.getElementById("message");
+const messageInputErrorMessage = document.querySelector(
+  ".messageGroup .errorMessage"
+);
 
-const message = document.getElementById("message");
-
-const agreedTerms = document.getElementById("terms");
-const termsError = document.getElementById("termsError");
+const termsCheckbox = document.getElementById("terms");
+const termsErrorMessage = document.querySelector(".termsGroup .errorMessage");
 
 //**********************************************************/
 //********************** Functions ************************//
 //**********************************************************/
 
-//Name validation
+//input validation
 
 const checkInput = (input) => {
   //trim whitespace to avoid blank inputs
@@ -44,9 +53,10 @@ const checkInput = (input) => {
   let iconContainer, messageContainer, regex, message;
   const namesRegex = /^[a-z ,.'-]+$/i; //https://stackoverflow.com/questions/3073850/javascript-regex-test-peoples-name
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; //https://stackoverflow.com/questions/46155/how-can-i-validate-an-email-address-in-javascript
-  const phoneRegex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im; //https://stackoverflow.com/questions/4338267/validate-phone-number-with-javascript
+  const phoneRegex =
+    /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im; //https://stackoverflow.com/questions/4338267/validate-phone-number-with-javascript
 
-  //Check if first/last name
+  //Check kind of input
   if (input === firstNameInput) {
     iconContainer = firstNameIcon;
     messageContainer = firstNameErrorMessage;
@@ -67,6 +77,19 @@ const checkInput = (input) => {
     messageContainer = phoneErrorMessage;
     regex = phoneRegex;
     message = "Please enter a valid phone number";
+  } else if (input === reasonSelectMenu) {
+    if (reasonSelectMenu.value === "initial") {
+      reasonSelectMenuErrorMessage.textContent =
+        "Please tell us the reason of your message";
+      return false;
+    }
+    return true;
+  } else if (input === messageInput) {
+    if (inputValue.length === 0) {
+      messageInputErrorMessage.textContent = "Don't forget your message!"
+      return false;
+    }
+    return true;
   }
 
   //Check input value
@@ -84,14 +107,16 @@ const checkInput = (input) => {
   messageContainer.textContent = "";
   iconContainer.innerHTML = `<i class="fa-solid fa-circle-check"></i>`;
   return true;
-};
+}; // Check input function
 
-const clearInput = (input, inputIcon, inputMessage) => {
+//Clear warnings if input is epmty
+
+const clearInputWarnings = (input, inputIcon, inputMessage) => {
   if (input.value.length === 0) {
     inputIcon.textContent = "";
     inputMessage.textContent = "";
   }
-};
+}; // Clear input function
 
 //**********************************************************/
 //***************** Event Listeners ***********************//
@@ -110,6 +135,10 @@ closeNavBtn.addEventListener("click", () => {
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
+
+  checkInput(reasonSelectMenu);
+  checkInput(messageInput);
+  console.log("Ready to submit");
 });
 
 //If form loses focus do not show any warnings
@@ -117,10 +146,10 @@ form.addEventListener("focusout", () => {
   const errorIcons = document.querySelectorAll(".inputGroup .icon");
   const errorMessages = document.querySelectorAll(".inputGroup .errorMessage");
   errorIcons.forEach((icon) => {
-    icon.hidden = true;
+    icon.style.display = "none";
   });
   errorMessages.forEach((message) => {
-    message.hidden = true;
+    message.style.display = "none";
   });
 });
 
@@ -129,29 +158,37 @@ form.addEventListener("focusin", () => {
   const errorIcons = document.querySelectorAll(".inputGroup .icon");
   const errorMessages = document.querySelectorAll(".inputGroup .errorMessage");
   errorIcons.forEach((icon) => {
-    icon.hidden = false;
+    icon.style.display = "initial";
   });
   errorMessages.forEach((message) => {
-    message.hidden = false;
+    message.style.display = "initial";
   });
 });
 
-firstNameInput.addEventListener("keyup", () => {
-  checkInput(firstNameInput);
-  clearInput(firstNameInput, firstNameIcon, firstNameErrorMessage);//Do not show warnings if input is completely empty
+firstNameInput.addEventListener("keyup", (e) => {
+  checkInput(e.target);
+  clearInputWarnings(e.target, firstNameIcon, firstNameErrorMessage); //Do not show warnings if input is completely empty
 });
 
-lastNameInput.addEventListener("keyup", () => {
-  checkInput(lastNameInput);
-  clearInput(lastNameInput, lastNameIcon, lastNameErrorMessage);
+lastNameInput.addEventListener("keyup", (e) => {
+  checkInput(e.target);
+  clearInputWarnings(e.target, lastNameIcon, lastNameErrorMessage);
 });
 
-emailInput.addEventListener("keyup", () => {
-  checkInput(emailInput);
-  clearInput(emailInput, emailIcon, emailErrorMessage);
+emailInput.addEventListener("keyup", (e) => {
+  checkInput(e.target);
+  clearInputWarnings(e.target, emailIcon, emailErrorMessage);
 });
 
-phoneInput.addEventListener("keyup", () => {
-  checkInput(phoneInput);
-  clearInput(phoneInput, phoneIcon, phoneErrorMessage);
+phoneInput.addEventListener("keyup", (e) => {
+  checkInput(e.target);
+  clearInputWarnings(e.target, phoneIcon, phoneErrorMessage);
+});
+
+reasonSelectMenu.addEventListener("change", (e) => {
+  reasonSelectMenuErrorMessage.textContent = "";
+});
+
+messageInput.addEventListener("change", (e) => {
+  messageInputErrorMessage.textContent = "";
 });

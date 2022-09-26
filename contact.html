@@ -99,21 +99,24 @@
 					<span class="icon"></span>
 				</div>
 
-
-				<select name="reason" id="reason">
-					<option id="selectPlaceholder" value="initial" disabled selected>Reason for contacting</option>
-					<option value="refund">Refund request</option>
-					<option value="status">Order status update</option>
-					<option value="praise">Praise!</option>
-					<option value="complaint">General concerns</option>
-				</select>
-
-				<label for="message" class="sr-only">Message for me</label>
-				<textarea name="message" id="message" cols="30" rows="10" placeholder="Message for me"></textarea>
-
+				<div class="inputGroup selectGroup">
+					<div class="errorMessage"></div>
+					<select name="reason" id="reason">
+						<option id="selectPlaceholder" value="initial" disabled selected>Reason for contacting</option>
+						<option value="refund">Refund request</option>
+						<option value="status">Order status update</option>
+						<option value="praise">Praise!</option>
+						<option value="complaint">General concerns</option>
+					</select>
+				</div>
+				<div class="inputGroup messageGroup">
+					<div class="errorMessage"></div>
+					<label for="message" class="sr-only">Message for me</label>
+					<textarea name="message" id="message" cols="30" rows="10" placeholder="Message for me"></textarea>
+				</div>
 				<fieldset>
 					<div class="inputGroup termsGroup">
-					<div class="errorMessage"></div>
+						<div class="errorMessage"></div>
 						<input type="checkbox" id="terms" />
 						<label for="terms">I agree to the Terms & Conditions.</label>
 						<span class="icon"></span>
