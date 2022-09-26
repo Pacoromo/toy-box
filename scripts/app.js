@@ -87,13 +87,13 @@ const checkInput = (input) => {
   } else if (input === messageInput) {
     if (inputValue.length === 0) {
       messageInputErrorMessage.textContent = "Don't forget your message!";
-      messageInput.value = "";//Reset text area if user types only blank spaces
+      messageInput.value = ""; //Reset text area if user types only blank spaces
       return false;
     }
     return true;
   } else if (input === termsCheckbox) {
     if (!termsCheckbox.checked) {
-      termsErrorMessage.textContent = "please agree to our terms & conditions"
+      termsErrorMessage.textContent = "Please agree to our terms & conditions";
       return false;
     }
     return true;
@@ -150,6 +150,7 @@ form.addEventListener("submit", (e) => {
   checkInput(messageInput);
   checkInput(termsCheckbox);
   console.log("Ready to submit");
+  console.log(e.target.submit());
 });
 
 //If form loses focus do not show any warnings
@@ -204,6 +205,11 @@ messageInput.addEventListener("keyup", (e) => {
   messageInputErrorMessage.textContent = "";
 });
 
-termsCheckbox.addEventListener("change", ()=>{
+termsCheckbox.addEventListener("change", () => {
   termsErrorMessage.textContent = "";
 });
+
+//formspree recommended
+window.onbeforeunload = () => {
+  form.reset();
+};

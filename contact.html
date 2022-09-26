@@ -70,38 +70,38 @@
 	<main class="contact mainContent">
 		<div class="wrapper">
 
-			<form action="https://formspree.io/f/xlevbbwe" method="POST" class="contactForm" name="contactForm">
+			<form action="https://formspree.io/f/xrgdqlrv" method="POST" class="contactForm" name="contactForm">
 
 				<div class="inputGroup firstNameGroup">
 					<div class="errorMessage"></div>
 					<label for="firstName" class="sr-only">Name</label>
-					<input type="text" id="firstName" placeholder="First Name">
+					<input type="text" id="firstName" name="firstName" placeholder="First Name">
 					<span class="icon"></span>
 				</div>
 				<div class="inputGroup lastNameGroup">
 					<div class="errorMessage"></div>
 					<label for="lastName" class="sr-only">Surname</label>
-					<input type="text" id="lastName" placeholder="Last Name">
+					<input type="text" id="lastName" name="lastName" placeholder="Last Name">
 					<span class="icon"></span>
 				</div>
 
 				<div class="inputGroup emailGroup">
 					<div class="errorMessage"></div>
 					<label for="email" class="sr-only">Email</label>
-					<input type="email" id="email" placeholder="Email">
+					<input type="email" id="email" name="email" placeholder="Email">
 					<span class="icon"></span>
 				</div>
 
 				<div class="inputGroup phoneGroup">
 					<div class="errorMessage"></div>
 					<label for="phone" class="sr-only">Phone</label>
-					<input type="tel" id="phone" placeholder="Phone">
+					<input type="tel" id="phone" name="phone" placeholder="Phone">
 					<span class="icon"></span>
 				</div>
 
 				<div class="inputGroup selectGroup">
 					<div class="errorMessage"></div>
-					<select name="reason" id="reason">
+					<select id="reason" name="messageReason">
 						<option id="selectPlaceholder" value="initial" disabled selected>Reason for contacting</option>
 						<option value="refund">Refund request</option>
 						<option value="status">Order status update</option>
