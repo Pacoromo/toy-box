@@ -86,7 +86,14 @@ const checkInput = (input) => {
     return true;
   } else if (input === messageInput) {
     if (inputValue.length === 0) {
-      messageInputErrorMessage.textContent = "Don't forget your message!"
+      messageInputErrorMessage.textContent = "Don't forget your message!";
+      messageInput.value = "";//Reset text area if user types only blank spaces
+      return false;
+    }
+    return true;
+  } else if (input === termsCheckbox) {
+    if (!termsCheckbox.checked) {
+      termsErrorMessage.textContent = "please agree to our terms & conditions"
       return false;
     }
     return true;
@@ -135,9 +142,13 @@ closeNavBtn.addEventListener("click", () => {
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-
+  checkInput(firstNameInput);
+  checkInput(lastNameInput);
+  checkInput(emailInput);
+  checkInput(phoneInput);
   checkInput(reasonSelectMenu);
   checkInput(messageInput);
+  checkInput(termsCheckbox);
   console.log("Ready to submit");
 });
 
@@ -189,6 +200,10 @@ reasonSelectMenu.addEventListener("change", (e) => {
   reasonSelectMenuErrorMessage.textContent = "";
 });
 
-messageInput.addEventListener("change", (e) => {
+messageInput.addEventListener("keyup", (e) => {
   messageInputErrorMessage.textContent = "";
+});
+
+termsCheckbox.addEventListener("change", ()=>{
+  termsErrorMessage.textContent = "";
 });
