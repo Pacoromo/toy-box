@@ -132,7 +132,9 @@ const clearInputWarnings = (input, inputIcon, inputMessage) => {
 
 const showModalScreen = () => {
   const modalScreen = document.querySelector(".modalScreen");
-  const popUpMessageContainer = document.querySelector(".popUpMessageContainer");
+  const popUpMessageContainer = document.querySelector(
+    ".popUpMessageContainer"
+  );
   const modalBtn = document.querySelector(".modalScreen button");
   const navBarHeight = document.querySelector(".navBar").clientHeight;
   const allWarnings = document.querySelectorAll("form .errorMessage");
@@ -140,7 +142,7 @@ const showModalScreen = () => {
 
   //Get the first warning being shown on screen
   for (let i = 0; i < allWarnings.length; i++) {
-    if (!allWarnings[i].textContent == "") {
+    if (allWarnings[i].textContent !== "") {
       firstWarning = allWarnings[i];
       break;
     }
@@ -220,6 +222,7 @@ phoneInput.addEventListener("input", (e) => {
 });
 
 reasonSelectMenu.addEventListener("input", (e) => {
+  //Clear messages when a change has occurred
   reasonSelectMenuErrorMessage.textContent = "";
 });
 
