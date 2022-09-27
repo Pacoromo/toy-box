@@ -1,4 +1,4 @@
-# toy-box
+# Toybox Page
 # Juno College Bootcamp Assignment 2
 
 ## --------------ToyBox Store Page --------------
