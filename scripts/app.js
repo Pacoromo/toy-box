@@ -41,6 +41,13 @@ const messageInputErrorMessage = document.querySelector(
 const termsCheckbox = document.getElementById("terms");
 const termsErrorMessage = document.querySelector(".termsGroup .errorMessage");
 
+// Regular expressions
+
+const namesRegex = /^[a-z ,.'-]+$/i; //https://stackoverflow.com/questions/3073850/javascript-regex-test-peoples-name
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; //https://stackoverflow.com/questions/46155/how-can-i-validate-an-email-address-in-javascript
+const phoneRegex =
+  /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im; //https://stackoverflow.com/questions/4338267/validate-phone-number-with-javascript
+
 //**********************************************************/
 //********************** Functions ************************//
 //**********************************************************/
@@ -51,10 +58,6 @@ const checkInput = (input) => {
   //trim whitespace to avoid blank inputs
   const inputValue = input.value.trim();
   let iconContainer, messageContainer, regex, message;
-  const namesRegex = /^[a-z ,.'-]+$/i; //https://stackoverflow.com/questions/3073850/javascript-regex-test-peoples-name
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; //https://stackoverflow.com/questions/46155/how-can-i-validate-an-email-address-in-javascript
-  const phoneRegex =
-    /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im; //https://stackoverflow.com/questions/4338267/validate-phone-number-with-javascript
 
   //Check kind of input
   if (input === firstNameInput) {
@@ -114,7 +117,7 @@ const checkInput = (input) => {
   messageContainer.textContent = "";
   iconContainer.innerHTML = `<i class="fa-solid fa-circle-check"></i>`;
   return true;
-}; // Check input function
+};
 
 //Clear warnings if input is epmty
 
@@ -123,7 +126,23 @@ const clearInputWarnings = (input, inputIcon, inputMessage) => {
     inputIcon.textContent = "";
     inputMessage.textContent = "";
   }
-}; // Clear input function
+};
+
+//Show modal function
+
+const showModalScreen = () => {
+  //modal screen to implement
+  const modalScreen = document.querySelector(".modalScreen");
+  const modalBtn = document.querySelector(".modalScreen button");
+  modalScreen.removeAttribute("hidden");
+  modalBtn.addEventListener(
+    "click",
+    () => {
+      modalScreen.setAttribute("hidden", "");
+    },
+    { once: true }
+  );
+};
 
 //**********************************************************/
 //***************** Event Listeners ***********************//
@@ -153,17 +172,7 @@ form.addEventListener("submit", (e) => {
   ) {
     e.target.submit();
   } else {
-    //modal screen to implement
-    const modalScreen = document.querySelector(".modalScreen");
-    const modalBtn = document.querySelector(".modalScreen button");
-    modalScreen.removeAttribute("hidden");
-    modalBtn.addEventListener(
-      "click",
-      () => {
-        modalScreen.setAttribute("hidden", "");
-      },
-      { once: true }
-    );
+    showModalScreen();
   }
 });
 

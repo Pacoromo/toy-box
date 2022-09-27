@@ -1131,7 +1131,6 @@ footer .footerNav nav a:focus {
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   background-color: #fff;
-  text-transform: capitalize;
   text-align: center;
   border-radius: 0.5em;
   padding: 2em;
