@@ -119,7 +119,7 @@ const checkInput = (input) => {
   return true;
 };
 
-//Clear warnings if input is epmty
+//Clear warnings if input is emptied by user
 
 const clearInputWarnings = (input, inputIcon, inputMessage) => {
   if (input.value.length === 0) {
@@ -131,17 +131,39 @@ const clearInputWarnings = (input, inputIcon, inputMessage) => {
 //Show modal screen function
 
 const showModalScreen = () => {
-  //modal screen to implement
   const modalScreen = document.querySelector(".modalScreen");
+  const popUpMessageContainer = document.querySelector(".popUpMessageContainer");
   const modalBtn = document.querySelector(".modalScreen button");
+  const navBarHeight = document.querySelector(".navBar").clientHeight;
+  const allWarnings = document.querySelectorAll("form .errorMessage");
+  let firstWarning = "";
 
+  //Get the first warning being shown on screen
+  for (let i = 0; i < allWarnings.length; i++) {
+    if (!allWarnings[i].textContent == "") {
+      firstWarning = allWarnings[i];
+      break;
+    }
+  }
+
+  //Generate HTML message
+  popUpMessageContainer.innerHTML = `<p>${firstWarning.textContent}</p>`;
+
+  //Once it's ready show modal screen
   modalScreen.classList.add("activeModal");
+
   modalBtn.addEventListener(
     "click",
     () => {
+      firstWarning.scrollIntoView(); //Scroll to the first warning (useful on mobile)
+      window.scrollBy({
+        top: -navBarHeight, //Navbar scroll offset (Navbar size changes on mobile)
+        left: "0",
+        behavior: "smooth",
+      });
       modalScreen.classList.remove("activeModal");
     },
-    { once: true } //only when modal is shown
+    { once: true } //Listen only when modal is shown
   );
 };
 
@@ -177,63 +199,39 @@ form.addEventListener("submit", (e) => {
   }
 });
 
-// //If form loses focus do not show any warnings
-// form.addEventListener("focusout", () => {
-//   const errorIcons = document.querySelectorAll(".inputGroup .icon");
-//   const errorMessages = document.querySelectorAll(".inputGroup .errorMessage");
-//   errorIcons.forEach((icon) => {
-//     icon.style.display = "none";
-//   });
-//   errorMessages.forEach((message) => {
-//     message.style.display = "none";
-//   });
-// });
-
-// //Show warnings back when a form element is focused
-// form.addEventListener("focusin", () => {
-//   const errorIcons = document.querySelectorAll(".inputGroup .icon");
-//   const errorMessages = document.querySelectorAll(".inputGroup .errorMessage");
-//   errorIcons.forEach((icon) => {
-//     icon.style.display = "initial";
-//   });
-//   errorMessages.forEach((message) => {
-//     message.style.display = "initial";
-//   });
-// });
-
-firstNameInput.addEventListener("keyup", (e) => {
+firstNameInput.addEventListener("input", (e) => {
   checkInput(e.target);
-  clearInputWarnings(e.target, firstNameIcon, firstNameErrorMessage); //Do not show warnings if input is completely empty
+  clearInputWarnings(e.target, firstNameIcon, firstNameErrorMessage); //Clear warnings if input is emptied by user
 });
 
-lastNameInput.addEventListener("keyup", (e) => {
+lastNameInput.addEventListener("input", (e) => {
   checkInput(e.target);
   clearInputWarnings(e.target, lastNameIcon, lastNameErrorMessage);
 });
 
-emailInput.addEventListener("keyup", (e) => {
+emailInput.addEventListener("input", (e) => {
   checkInput(e.target);
   clearInputWarnings(e.target, emailIcon, emailErrorMessage);
 });
 
-phoneInput.addEventListener("keyup", (e) => {
+phoneInput.addEventListener("input", (e) => {
   checkInput(e.target);
   clearInputWarnings(e.target, phoneIcon, phoneErrorMessage);
 });
 
-reasonSelectMenu.addEventListener("change", (e) => {
+reasonSelectMenu.addEventListener("input", (e) => {
   reasonSelectMenuErrorMessage.textContent = "";
 });
 
-messageInput.addEventListener("keyup", (e) => {
+messageInput.addEventListener("input", (e) => {
   messageInputErrorMessage.textContent = "";
 });
 
-termsCheckbox.addEventListener("change", () => {
+termsCheckbox.addEventListener("input", () => {
   termsErrorMessage.textContent = "";
 });
 
-//formspree recommended to clear form once submitted
+//Clear form once submitted (formspree recommended)
 window.onbeforeunload = () => {
   form.reset();
 };

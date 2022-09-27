@@ -70,7 +70,8 @@
 	<main class="contact mainContent">
 		<div class="wrapper">
 
-			<form action="https://formspree.io/f/xrgdqlrv" method="POST" class="contactForm" name="contactForm">
+			<form id="form" action="https://formspree.io/f/xrgdqlrv" method="POST" class="contactForm"
+				name="contactForm" novalidate>
 
 				<div class="inputGroup firstNameGroup">
 					<div class="errorMessage"></div>
@@ -195,7 +196,9 @@
 	</footer>
 	<div class="modalScreen">
 		<div class="popUpContainer">
-			<p>Please fill the form</p>
+			<div class="popUpMessageContainer">
+				<!-- Message Generated-->
+			</div>
 			<button>OK</button>
 		</div>
 	</div>
