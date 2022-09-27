@@ -11,7 +11,7 @@ Adding some simple JavaScript functionality to a page using the new concepts lea
 The requirements are:
 
 - Manipulate the DOM with some event listeners.
-- Update some of the CSS rendering by implementing the use of addClass() and removeClass() methods.
+- Update some of the CSS rendering via javascript.
 - implement optional UI elements.
 - Make use of some conditionals and variables.
 - Iterate through arrays and objects
