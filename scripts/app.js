@@ -55,7 +55,7 @@ const phoneRegex =
 //input validation
 
 const checkInput = (input) => {
-  //trim whitespace to avoid blank inputs
+  //trim whitespace to avoid validating blank inputs
   const inputValue = input.value.trim();
   let iconContainer, messageContainer, regex, message;
 
@@ -102,7 +102,7 @@ const checkInput = (input) => {
     return true;
   }
 
-  //Then, check input value
+  //Then, validate input value
 
   if (inputValue.length === 0) {
     messageContainer.textContent = message;
@@ -128,19 +128,20 @@ const clearInputWarnings = (input, inputIcon, inputMessage) => {
   }
 };
 
-//Show modal function
+//Show modal screen function
 
 const showModalScreen = () => {
   //modal screen to implement
   const modalScreen = document.querySelector(".modalScreen");
   const modalBtn = document.querySelector(".modalScreen button");
-  modalScreen.removeAttribute("hidden");
+
+  modalScreen.classList.add("activeModal");
   modalBtn.addEventListener(
     "click",
     () => {
-      modalScreen.setAttribute("hidden", "");
+      modalScreen.classList.remove("activeModal");
     },
-    { once: true }
+    { once: true } //only when modal is shown
   );
 };
 
@@ -176,29 +177,29 @@ form.addEventListener("submit", (e) => {
   }
 });
 
-//If form loses focus do not show any warnings
-form.addEventListener("focusout", () => {
-  const errorIcons = document.querySelectorAll(".inputGroup .icon");
-  const errorMessages = document.querySelectorAll(".inputGroup .errorMessage");
-  errorIcons.forEach((icon) => {
-    icon.style.display = "none";
-  });
-  errorMessages.forEach((message) => {
-    message.style.display = "none";
-  });
-});
+// //If form loses focus do not show any warnings
+// form.addEventListener("focusout", () => {
+//   const errorIcons = document.querySelectorAll(".inputGroup .icon");
+//   const errorMessages = document.querySelectorAll(".inputGroup .errorMessage");
+//   errorIcons.forEach((icon) => {
+//     icon.style.display = "none";
+//   });
+//   errorMessages.forEach((message) => {
+//     message.style.display = "none";
+//   });
+// });
 
-//Show warnings back when a form element is focused
-form.addEventListener("focusin", () => {
-  const errorIcons = document.querySelectorAll(".inputGroup .icon");
-  const errorMessages = document.querySelectorAll(".inputGroup .errorMessage");
-  errorIcons.forEach((icon) => {
-    icon.style.display = "initial";
-  });
-  errorMessages.forEach((message) => {
-    message.style.display = "initial";
-  });
-});
+// //Show warnings back when a form element is focused
+// form.addEventListener("focusin", () => {
+//   const errorIcons = document.querySelectorAll(".inputGroup .icon");
+//   const errorMessages = document.querySelectorAll(".inputGroup .errorMessage");
+//   errorIcons.forEach((icon) => {
+//     icon.style.display = "initial";
+//   });
+//   errorMessages.forEach((message) => {
+//     message.style.display = "initial";
+//   });
+// });
 
 firstNameInput.addEventListener("keyup", (e) => {
   checkInput(e.target);
@@ -232,7 +233,7 @@ termsCheckbox.addEventListener("change", () => {
   termsErrorMessage.textContent = "";
 });
 
-//formspree recommended
+//formspree recommended to clear form once submitted
 window.onbeforeunload = () => {
   form.reset();
 };
