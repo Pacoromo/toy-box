@@ -1,12 +1,9 @@
-# Toybox Page
-# Juno College Bootcamp Assignment 2
-
 ## --------------ToyBox Store Page --------------
 
 ### -------------Adding JavaScript Functionality---------------
 
 
-Adding some simple JavaScript functionality to a page using the new concepts learned during class.
+Adding some simple JavaScript functionality to a page.
 
 The requirements are:
 
